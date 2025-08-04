@@ -1,7 +1,8 @@
 'use client';
 
-import React, { createContext, useState } from 'react';
+import React, { createContext } from 'react';
 import type { ICartProduct, IProduct } from '../types';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export interface ICartContext {
 	cartItems: ICartProduct[];
@@ -22,7 +23,7 @@ export const CartContext = createContext<ICartContext>({
 });
 
 export const CartContextProvider = ({ children }: React.PropsWithChildren) => {
-	const [cartItems, setCartItems] = useState<ICartProduct[]>([]);
+	const [cartItems, setCartItems] = useLocalStorage<ICartProduct[]>('cartItems', []);
 
 	const getProductQuantityInCart = (product: IProduct) => {
 		const cartItem = cartItems.find((item) => item.id === product.id);

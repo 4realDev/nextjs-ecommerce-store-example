@@ -38,6 +38,10 @@
     font-size: 1.2em;
     margin: 10px 0;
     height: 48px;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .productPrice {

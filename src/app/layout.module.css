@@ -1,5 +1,14 @@
+/* important stylings for footer to work correctly */
+/* min-height: 100vh */
+/* ensures that page is at least full viewport height */ 
+/* display: flex; flex-direction: column;
+/* creates a vertical flexbox */
+/* flex: 1 */
+/* makes main grow to fill available space */
+
 .main {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    flex: 1;
 }

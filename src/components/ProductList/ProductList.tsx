@@ -1,28 +1,42 @@
 'use client';
 
-import React, { use, useContext } from 'react';
+import React, { use, useContext, useMemo } from 'react';
 import classes from './ProductList.module.css';
 import { ProductItem } from '../ProductItem/ProductItem';
 import { CartContext } from '@/store/cart-context-provider';
 import { ProductsContext } from '@/store/product-context-provider';
+import { useCartActionsWithToast } from '@/hooks/useCartActionsWithToast';
+import { AnimationSection } from '../ui/AnimationSection';
 
 export const ProductList = () => {
-	const { productsPromise } = useContext(ProductsContext);
+	const { productsPromise, searchTerm } = useContext(ProductsContext);
 	const products = use(productsPromise);
-	const { addToCart, removeFromCart, getProductQuantityInCart } = useContext(CartContext);
+	const { getProductQuantityInCart } = useContext(CartContext);
+	const { handleAddToCart, handleRemoveFromCart } = useCartActionsWithToast();
+
+	const filteredProducts = useMemo(() => {
+		const filteredProducts = products;
+		return filteredProducts.filter((product) => {
+			const term = searchTerm ? searchTerm.toLowerCase() : '';
+			return product.title.toLowerCase().includes(term);
+		});
+	}, [products, searchTerm]);
+
 	return (
-		<div className='productsContainer'>
-			<ul className={classes.productsGrid}>
-				{products.map((product) => (
+		<ul className={classes.productsGrid}>
+			{filteredProducts.map((product) => (
+				<AnimationSection
+					duration={300}
+					key={product.id}>
 					<ProductItem
 						key={product.id}
 						product={product}
-						addToCartAction={addToCart}
-						removeFromCartAction={removeFromCart}
+						addToCartAction={handleAddToCart}
+						removeFromCartAction={handleRemoveFromCart}
 						quantity={getProductQuantityInCart(product)}
 					/>
-				))}
-			</ul>
-		</div>
+				</AnimationSection>
+			))}
+		</ul>
 	);
 };

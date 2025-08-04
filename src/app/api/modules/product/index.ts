@@ -8,6 +8,15 @@ export const getProducts = async () => {
 		url: ApiEndpoints.PRODUCTS,
 	});
 	// Simulate 3s network delay
+	await new Promise((resolve) => setTimeout(resolve, 6000));
+	return response;
+};
+
+export const getProductById = async (id: string) => {
+	const response = request<IProduct>({
+		method: 'GET',
+		url: `/products/${id}`,
+	});
 	await new Promise((resolve) => setTimeout(resolve, 3000));
 	return response;
 };

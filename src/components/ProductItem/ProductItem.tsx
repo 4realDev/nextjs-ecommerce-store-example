@@ -4,8 +4,10 @@ import React from 'react';
 import classes from './ProductItem.module.css';
 import Image from 'next/image';
 import { IProduct } from '@/types';
-import { QuantityControls } from '../QuantityControls';
 import Link from 'next/link';
+import { QuantityControls } from '../ui/QuantityControls';
+import Button from '../ui/Button/Button';
+import { formatPrice } from '@/utils/formatPrice';
 
 type ProductItemProps = {
 	product: IProduct;
@@ -31,11 +33,12 @@ export const ProductItem = ({
 						src={product.image}
 						alt={product.title}
 						fill
+						sizes='100vw'
 						className={classes.productImage}
 					/>
 				</Link>
 			</div>
-			<p className={classes.productPrice}>Price: ${product.price}</p>
+			<p className={classes.productPrice}>Price: {formatPrice(product.price.toString(), 'CHF')}</p>
 
 			{quantity > 0 ? (
 				<QuantityControls
@@ -45,14 +48,10 @@ export const ProductItem = ({
 					item={product}
 				/>
 			) : (
-				<button
-					className={classes.addToCartButton}
-					onClick={(e) => {
-						e.stopPropagation();
-						addToCartAction(product);
-					}}>
-					Add to cart
-				</button>
+				<Button
+					buttonText='Add to Cart'
+					onClickFunction={() => addToCartAction(product)}
+				/>
 			)}
 		</li>
 	);

@@ -1,11 +1,18 @@
+// TODO: Add hero banner
+// TODO: Add carousel
+// TODO: Make layout wrapper for all pages (1400px, 48px margin-top, background: white ...)
+// TODO: Find out how to share variables between CSS modules
+
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { getProducts } from './api/modules/product';
-import { NavBar } from '@/components/NavBar/NavBar';
+import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { ProductsContextProvider } from '@/store/product-context-provider';
 import { CartContextProvider } from '@/store/cart-context-provider';
+import classes from './layout.module.css';
 import '../styles/globals.css';
+import { ToastContainer } from 'react-toastify';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -38,8 +45,9 @@ export default function RootLayout({
 				{/* pass fetched data to ContextProvider (state management solution) so it can be used in the entire app */}
 				<ProductsContextProvider productsPromise={productsPromise}>
 					<CartContextProvider>
-						<NavBar />
-						<main>{children}</main>
+						<ToastContainer />
+						<Header />
+						<main className={classes.main}>{children}</main>
 						<Footer />
 					</CartContextProvider>
 				</ProductsContextProvider>

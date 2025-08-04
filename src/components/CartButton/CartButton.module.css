@@ -1,0 +1,49 @@
+
+.cartButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    font-size: 18px;
+}
+
+.cartButton:hover {
+    background-color: #007bff;
+    transform: scale(1.05);
+}
+.cartButton:hover .cartIcon {
+    color: white !important;
+}
+
+.cartIcon {
+  width: 24px;
+  height: 24px;
+  color: #495057;
+  transition: color 0.3s ease;
+  stroke-width: 2;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #ff4757, #ff3742);
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+  animation: pulse 2s infinite;
+}

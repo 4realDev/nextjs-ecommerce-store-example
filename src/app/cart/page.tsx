@@ -1,8 +1,13 @@
-export default function CartPage() {
+import classes from './page.module.css';
+import { CartList } from '@/components/CartList';
+
+export default async function CartPage() {
 	return (
-		<div>
-			<h1>Cart Page</h1>
-			<p>This is where the cart items will be displayed.</p>
-		</div>
+		<>
+			<div className={classes.container}>
+				<h1 className={classes.title}>Cart</h1>
+				<CartList />
+			</div>
+		</>
 	);
 }
