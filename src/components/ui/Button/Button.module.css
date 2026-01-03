@@ -1,51 +1,60 @@
 .button {
-    box-sizing: border-box;
+    /* only takes up as much width as its content (inline-flex) instead of the full width of its container (flex) */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: 8px 12px;
+    min-height: 24px;
+
+    border: 1px solid #000000;
+    border-radius: 6px;
+
     font-size: 14px;
     font-weight: 500;
     line-height: 14px;
-    box-shadow: none;
-    border: none;
+
     cursor: pointer;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 8px 12px;
-    transition: all 0.25s ease;
-    align-items: center;
-    border: 1px solid #000000;
-    border-radius: 6px;
-    text-align: center;
-}
-
-.button__light {  
-    background-color: #FFFFFF;
-    color: #000000;
-}
-
-.button__light__disabled {
-    opacity: 0.25;
-    pointer-events: none;
     transition: all 0.25s ease;
 }
+
+/* ---------------- Variants ---------------- */
+
+/* ---------- Light Theme ---------- */
+
+.button__light {
+  border-color: #e5e7eb;
+}
+
+.button__light:hover:not(:disabled) {
+  border-color: #d1d5db;
+}
+
+/* ---------- Dark Theme ---------- */
 
 .button__dark {
-    background-color: #000000;
-    color: #FFFFFF; 
+  background-color: #111827;
+  color: #f9fafb;
+  border-color: #1f2937;
 }
 
-.button__dark__disabled {
-    opacity: 0.5;
-    pointer-events: none;
-    transition: all 0.25s ease;
+.button__dark:hover:not(:disabled) {
+  background-color: #1f2937;   /* visible lift */
+  border-color: #4b5563;       /* clearer outline */
 }
 
-.buttonIcon {
-    height: 20px;
-    width: 20px;
+
+/* ---------- Disabled ---------- */
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 
-.buttonText {
+.text {
     /* padding-left: 8px; */
     font-size: 14px;
     line-height: 10px;

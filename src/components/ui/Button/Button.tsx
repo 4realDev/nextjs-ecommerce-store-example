@@ -1,56 +1,78 @@
-import React from 'react';
-import styles from './Button.module.css';
-import cn from 'classnames';
+// Generic Button Component
+// Native: extends ButtonHTMLAttributes<HTMLButtonElement>
+// Accessible: aria-*, type, form, tabIndex
+// Composable and Design-system friendly
+// Best Practise:
+// - use native "onClick" which doesn't have to be passed, because it is already extended by ButtonHTMLAttributes
+// - use "disabled" prop, uses composition
+// - pass children prop instead of buttonText to allow more flexibility for button content
+// - built-in styling variants instead of isLight flag to control button styles and standardize behavior
 
-export type ButtonProps = {
-	onClickFunction: () => void;
-	buttonText?: string | undefined;
-	buttonIcon?: React.ReactNode;
-	isLight?: boolean;
-	isDisabled?: boolean;
-	customStyles?: React.CSSProperties;
-	customClassName?: string;
-	centerText?: boolean;
-	stopPropagation?: boolean;
+"use client";
+
+import React, {
+  ButtonHTMLAttributes,
+  MouseEvent,
+  CSSProperties,
+  ReactNode,
+} from "react";
+import styles from "./Button.module.css";
+import cn from "classnames";
+
+export type ButtonVariant = "light" | "dark";
+
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: ButtonVariant;
+  icon?: ReactNode;
+  iconPosition?: "left" | "right";
+  centerText?: boolean;
+  stopPropagation?: boolean;
+  className?: string;
+  style?: CSSProperties;
 };
 
 const Button = ({
-	onClickFunction,
-	buttonIcon,
-	buttonText,
-	isLight = false,
-	isDisabled = false,
-	customStyles,
-	customClassName,
-	centerText = true,
-	stopPropagation = true,
+  variant = "dark",
+  icon,
+  iconPosition = "left",
+  centerText = true,
+  stopPropagation = true,
+  className,
+  disabled,
+  onClick,
+  children,
+  type = "button",
+  ...rest
 }: ButtonProps) => {
-	return (
-		<button
-			className={cn(
-				isLight ? styles['button__light'] : styles['button__dark'],
-				[styles['button']],
-				{
-					[styles['button__light__disabled']]: isDisabled && isLight,
-					[styles['button__dark__disabled']]: isDisabled && !isLight,
-					customClassName,
-				}
-			)}
-			style={customStyles}
-			onClick={(e) => {
-				if (stopPropagation) e.stopPropagation();
-				onClickFunction();
-			}}>
-			{buttonIcon && <div className={styles.buttonIcon}>{buttonIcon}</div>}
-			{buttonText && (
-				<span
-					className={styles.buttonText}
-					style={{ justifyContent: centerText ? 'center' : 'left' }}>
-					{buttonText}
-				</span>
-			)}
-		</button>
-	);
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    if (stopPropagation) e.stopPropagation();
+    onClick?.(e);
+  };
+  return (
+    <button
+      {...rest}
+      type={type}
+      disabled={disabled}
+      onClick={handleClick}
+      className={cn(styles[`button__${variant}`], [styles["button"]], {
+        [styles.iconOnly]: !children && icon,
+        className,
+      })}>
+      {icon && iconPosition === "left" && (
+        <div className={styles.icon}>{icon}</div>
+      )}
+      {children && (
+        <span
+          className={styles.text}
+          style={{ justifyContent: centerText ? "center" : "flex-start" }}>
+          {children}
+        </span>
+      )}
+      {icon && iconPosition === "right" && (
+        <div className={styles.icon}>{icon}</div>
+      )}
+    </button>
+  );
 };
 
 export default Button;

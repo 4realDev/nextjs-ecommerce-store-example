@@ -23,8 +23,6 @@
 }
 
 .cartIcon {
-  width: 24px;
-  height: 24px;
   color: #495057;
   transition: color 0.3s ease;
   stroke-width: 2;
@@ -32,8 +30,8 @@
 
 .cartBadge {
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: 8px;
+  right: 8px;
   background: linear-gradient(135deg, #ff4757, #ff3742);
   color: white;
   border-radius: 50%;
