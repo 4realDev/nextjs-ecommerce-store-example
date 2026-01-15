@@ -1,0 +1,57 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    margin: 80px auto;
+    padding: 2rem;
+    background: white
+}
+
+/* Header */
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #111;
+  letter-spacing: 0.3px;
+}
+
+.description {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #555;
+  max-width: 520px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.productsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    /* padding: 20px; */
+}
+
+.searchFieldContainer {
+  width: 100%;
+  max-width: 320px;
+  align-self: flex-start
+}
+
+.searchFieldContainer input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.searchFieldContainer input:focus {
+  border-color: #111;
+}

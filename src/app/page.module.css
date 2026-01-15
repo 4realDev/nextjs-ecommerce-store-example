@@ -1,32 +1,134 @@
-.container{
-    max-width: 1400px;
-    margin: 48px auto;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: white;
+.container {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
 }
 
 .title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #111;
+  text-align: center;
+  letter-spacing: 0.5px;
 }
 
 .description {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #555;
+  text-align: center;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-bottom: 48px;
 }
 
-.imageContainer {
+.featureList {
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  left: 24px;
+
+  text-align: left;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #1a1a1a;
+
+  position: relative;
+}
+
+/* Subtle vertical guide */
+.featureList::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.06),
+    transparent
+  );
+}
+
+/* Item baseline */
+.featureList li {
+  padding: 0.4rem 0;
+  font-weight: 400;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.035);
+
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+/* Remove border from first item */
+.featureList li:first-child {
+  border-top: none;
+}
+
+/* Hover interaction (desktop only) */
+@media (hover: hover) {
+  .featureList li:hover {
+    transform: translateX(3px);
+    color: #000;
+  }
+}
+
+/* Premium emphasis for key technologies */
+.featureList strong {
+  font-weight: 600;
+  color: #ff3742;
+  position: relative;
+}
+
+/* Subtle underline highlight on hover */
+@media (hover: hover) {
+  .featureList li:hover strong::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.035);
+  }
+
+  .featureList li:hover strong {
+    font-weight: 600;
+  }
+}
+
+/* .imageContainer {
     position: relative;
     overflow: hidden;
     width: 1400px;
     height: 400px;
     border-radius: 10px;
-}
+} */
 
-.bannerImage {
+/* .bannerImage {
     object-fit: cover;    
-}
+} */
+
+/* page.module.css */
+
+
+
+
+
+
+
