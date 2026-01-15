@@ -18,20 +18,23 @@
     gap: 1rem;
 }
 
-.navItem{
-    color: white;
-    text-decoration: none;
-}
-
-.navItem:hover{
-    color: #0070f3;
-    text-decoration: underline;
-}
-
 .logo{
     font-size: 1.5rem;
     font-weight: bold;
     color: white;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Navbar links */
+.navbar .navItem {
+  color: #ccc; /* subtle base color */
+  text-decoration: none;
+  position: relative;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navItem:hover {
+  color: #fff; /* bright on hover */
 }
