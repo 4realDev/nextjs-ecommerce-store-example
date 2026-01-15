@@ -5,6 +5,8 @@ import React from "react";
 import classes from "./Header.module.css";
 import { NavigationRoutes } from "@/constants/routes";
 import { CartButton } from "../CartButton/CartButton";
+import Button from "../ui/Button/Button";
+import { GitHubButton } from "../GitHubButton";
 
 export const Header = () => {
   return (
@@ -26,7 +28,10 @@ export const Header = () => {
           <Link href={NavigationRoutes.PRODUCTS}>Products</Link>
         </li>
       </ul>
-      <CartButton />
+      <div style={{ gap: "24px", display: "flex" }}>
+        <GitHubButton />
+        <CartButton />
+      </div>
     </nav>
   );
 };

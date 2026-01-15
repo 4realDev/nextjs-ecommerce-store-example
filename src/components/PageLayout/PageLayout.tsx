@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { CSSProperties, Suspense } from "react";
 import classes from "../PageLayout/PageLayout.module.css";
 
 type PageLayoutProps = {
@@ -6,6 +6,7 @@ type PageLayoutProps = {
   description?: string;
   fallback?: React.ReactNode;
   searchComponent?: React.ReactNode;
+  style?: CSSProperties;
 };
 
 export const PageLayout = ({
@@ -13,10 +14,13 @@ export const PageLayout = ({
   description,
   fallback,
   searchComponent,
+  style,
   children,
 }: React.PropsWithChildren<PageLayoutProps>) => {
   return (
-    <main className={classes.container}>
+    <main
+      className={classes.container}
+      style={style}>
       {(title || description) && (
         <header>
           {title && <h1 className={classes.title}>{title}</h1>}
